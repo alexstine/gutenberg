@@ -32,13 +32,14 @@ const WIDGET_AREAS_IDENTIFIER = 'edit-widgets/block-areas';
  * Internal dependencies
  */
 import WidgetAreas from './widget-areas';
+import { STORE_NAME as editWidgetsStoreName } from '../../constants';
 
 function ComplementaryAreaTab( { identifier, label, isActive } ) {
 	const { enableComplementaryArea } = useDispatch( interfaceStore );
 	return (
 		<Button
 			onClick={ () =>
-				enableComplementaryArea( 'core/edit-widgets', identifier )
+				enableComplementaryArea( editWidgetsStoreName, identifier )
 			}
 			className={ classnames( 'edit-widgets-sidebar__panel-tab', {
 				'is-active': isActive,
@@ -73,7 +74,7 @@ export default function Sidebar() {
 
 		const selectedBlock = getSelectedBlock();
 
-		let activeArea = getActiveComplementaryArea( 'core/edit-widgets' );
+		let activeArea = getActiveComplementaryArea( editWidgetsStoreName );
 		if ( ! activeArea ) {
 			if ( selectedBlock ) {
 				activeArea = BLOCK_INSPECTOR_IDENTIFIER;
@@ -117,7 +118,7 @@ export default function Sidebar() {
 			isGeneralSidebarOpen
 		) {
 			enableComplementaryArea(
-				'core/edit-widgets',
+				editWidgetsStoreName,
 				BLOCK_INSPECTOR_IDENTIFIER
 			);
 		}
@@ -127,7 +128,7 @@ export default function Sidebar() {
 			isGeneralSidebarOpen
 		) {
 			enableComplementaryArea(
-				'core/edit-widgets',
+				editWidgetsStoreName,
 				WIDGET_AREAS_IDENTIFIER
 			);
 		}

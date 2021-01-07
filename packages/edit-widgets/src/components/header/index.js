@@ -21,6 +21,7 @@ import SaveButton from '../save-button';
 import UndoButton from './undo-redo/undo';
 import RedoButton from './undo-redo/redo';
 import useLastSelectedWidgetArea from '../../hooks/use-last-selected-widget-area';
+import { STORE_NAME as editWidgetsStoreName } from '../../constants';
 
 function Header() {
 	const inserterButton = useRef();
@@ -28,16 +29,16 @@ function Header() {
 	const widgetAreaClientId = useLastSelectedWidgetArea();
 	const isLastSelectedWidgetAreaOpen = useSelect(
 		( select ) =>
-			select( 'core/edit-widgets' ).getIsWidgetAreaOpen(
+			select( editWidgetsStoreName ).getIsWidgetAreaOpen(
 				widgetAreaClientId
 			),
 		[ widgetAreaClientId ]
 	);
 	const isInserterOpened = useSelect( ( select ) =>
-		select( 'core/edit-widgets' ).isInserterOpened()
+		select( editWidgetsStoreName ).isInserterOpened()
 	);
 	const { setIsWidgetAreaOpen, setIsInserterOpened } = useDispatch(
-		'core/edit-widgets'
+		editWidgetsStoreName
 	);
 	const { selectBlock } = useDispatch( 'core/block-editor' );
 	const handleClick = () => {

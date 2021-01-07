@@ -9,9 +9,14 @@ import {
 import { useDispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * Internal dependencies
+ */
+import { STORE_NAME as editWidgetsStoreName } from '../../constants';
+
 function KeyboardShortcuts() {
 	const { redo, undo } = useDispatch( 'core' );
-	const { saveEditedWidgetAreas } = useDispatch( 'core/edit-widgets' );
+	const { saveEditedWidgetAreas } = useDispatch( editWidgetsStoreName );
 
 	useShortcut(
 		'core/edit-widgets/undo',

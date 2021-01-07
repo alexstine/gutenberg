@@ -23,6 +23,7 @@ import KeyboardShortcuts from '../keyboard-shortcuts';
 import { useEntityBlockEditor } from '@wordpress/core-data';
 import { buildWidgetAreasPostId, KIND, POST_TYPE } from '../../store/utils';
 import useLastSelectedWidgetArea from '../../hooks/use-last-selected-widget-area';
+import { STORE_NAME as editWidgetsStoreName } from '../../constants';
 
 export default function WidgetAreasBlockEditorProvider( {
 	blockEditorSettings,
@@ -35,8 +36,8 @@ export default function WidgetAreasBlockEditorProvider( {
 				select( 'core' ).canUser( 'create', 'media' ),
 				true
 			),
-			widgetAreas: select( 'core/edit-widgets' ).getWidgetAreas(),
-			widgets: select( 'core/edit-widgets' ).getWidgets(),
+			widgetAreas: select( editWidgetsStoreName ).getWidgetAreas(),
+			widgets: select( editWidgetsStoreName ).getWidgets(),
 			reusableBlocks: select( 'core' ).getEntityRecords(
 				'postType',
 				'wp_block'
@@ -44,7 +45,7 @@ export default function WidgetAreasBlockEditorProvider( {
 		} ),
 		[]
 	);
-	const { setIsInserterOpened } = useDispatch( 'core/edit-widgets' );
+	const { setIsInserterOpened } = useDispatch( editWidgetsStoreName );
 
 	const settings = useMemo( () => {
 		let mediaUploadBlockEditor;

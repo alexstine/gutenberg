@@ -7,9 +7,14 @@ import { blockDefault } from '@wordpress/icons';
 import { BlockIcon } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * Internal dependencies
+ */
+import { STORE_NAME as editWidgetsStoreName } from '../../constants';
+
 export default function WidgetAreas( { selectedWidgetAreaId } ) {
 	const widgetAreas = useSelect(
-		( select ) => select( 'core/edit-widgets' ).getWidgetAreas(),
+		( select ) => select( editWidgetsStoreName ).getWidgetAreas(),
 		[]
 	);
 

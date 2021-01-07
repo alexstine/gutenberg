@@ -26,6 +26,7 @@ import { __ } from '@wordpress/i18n';
 import Header from '../header';
 import WidgetAreasBlockEditorContent from '../widget-areas-block-editor-content';
 import useWidgetLibraryInsertionPoint from '../../hooks/use-widget-library-insertion-point';
+import { STORE_NAME as editWidgetsStoreName } from '../../constants';
 
 const interfaceLabels = {
 	/* translators: accessibility text for the widgets screen top bar landmark region. */
@@ -40,15 +41,15 @@ function Interface( { blockEditorSettings } ) {
 	const isMobileViewport = useViewportMatch( 'medium', '<' );
 	const isHugeViewport = useViewportMatch( 'huge', '>=' );
 	const { setIsInserterOpened, closeGeneralSidebar } = useDispatch(
-		'core/edit-widgets'
+		editWidgetsStoreName
 	);
 	const { rootClientId, insertionIndex } = useWidgetLibraryInsertionPoint();
 
 	const { hasSidebarEnabled, isInserterOpened } = useSelect( ( select ) => ( {
 		hasSidebarEnabled: !! select(
 			interfaceStore
-		).getActiveComplementaryArea( 'core/edit-widgets' ),
-		isInserterOpened: !! select( 'core/edit-widgets' ).isInserterOpened(),
+		).getActiveComplementaryArea( editWidgetsStoreName ),
+		isInserterOpened: !! select( editWidgetsStoreName ).isInserterOpened(),
 	} ) );
 	const ref = useRef();
 

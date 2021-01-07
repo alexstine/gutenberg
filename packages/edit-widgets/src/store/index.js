@@ -14,10 +14,7 @@ import * as actions from './actions';
 import controls from './controls';
 import './batch-support';
 
-/**
- * Module Constants
- */
-const STORE_NAME = 'core/edit-widgets';
+import { STORE_NAME } from '../constants';
 
 /**
  * Block editor data store configuration.
