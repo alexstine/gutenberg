@@ -6,7 +6,7 @@ import { isNumber, isString } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { useInstanceId } from '@wordpress/compose';
 import { textColor } from '@wordpress/icons';
 import { useMemo, forwardRef } from '@wordpress/element';
@@ -103,7 +103,10 @@ function FontSizePicker(
 				{ fontSizes.length > 0 && (
 					<CustomSelectControl
 						className={ 'components-font-size-picker__select' }
-						label={ __( 'Font size' ) }
+						label={ sprintf( __( 'Font size%s' ),
+							': ' + options.find(
+								( option ) => option.key === selectedFontSizeSlug
+							) );
 						options={ options }
 						value={ options.find(
 							( option ) => option.key === selectedFontSizeSlug
