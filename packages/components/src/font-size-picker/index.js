@@ -98,7 +98,9 @@ function FontSizePicker(
 			className="components-font-size-picker"
 			{ ...( ref ? {} : { ref } ) }
 		>
-			<VisuallyHidden as="legend">{ __( 'Font size test' ) }</VisuallyHidden>
+			<VisuallyHidden as="legend">
+				{ __( 'Font size test' ) }
+			</VisuallyHidden>
 			<div className="components-font-size-picker__controls">
 				{ fontSizes.length > 0 && (
 					<CustomSelectControl
